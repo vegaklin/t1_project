@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Account
+  datasource:
+    url: jdbc:postgresql://localhost:5437/accountdb
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+server:
+  port: 8080

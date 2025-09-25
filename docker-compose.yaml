@@ -1,0 +1,87 @@
+services:
+  postgresql-client:
+    container_name: client_db
+    image: postgres:16
+    ports:
+      - "5436:5432"
+    environment:
+      - POSTGRES_DB=clientdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - client_data:/var/lib/postgresql/data
+
+  postgresql-account:
+    container_name: account_db
+    image: postgres:16
+    ports:
+      - "5437:5432"
+    environment:
+      - POSTGRES_DB=accountdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - account_data:/var/lib/postgresql/data
+
+  postgresql-credit:
+    container_name: credit_db
+    image: postgres:16
+    ports:
+      - "5438:5432"
+    environment:
+      - POSTGRES_DB=creditdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - credit_data:/var/lib/postgresql/data
+
+  liquibase-client:
+    image: liquibase/liquibase:4.29
+    container_name: liquibase_client
+    depends_on:
+      - postgresql-client
+    command:
+      - --searchPath=/changesets
+      - --changelog-file=master.xml
+      - --url=jdbc:postgresql://postgresql-client:5432/clientdb
+      - --username=postgres
+      - --password=postgres
+      - update
+    volumes:
+      - ./client-processing/src/main/resources/db/changelog:/changesets
+
+  liquibase-account:
+    image: liquibase/liquibase:4.29
+    container_name: liquibase_account
+    depends_on:
+      - postgresql-account
+    command:
+      - --searchPath=/changesets
+      - --changelog-file=master.xml
+      - --url=jdbc:postgresql://postgresql-account:5432/accountdb
+      - --username=postgres
+      - --password=postgres
+      - update
+    volumes:
+      - ./account-processing/src/main/resources/db/changelog:/changesets
+
+  liquibase-credit:
+    image: liquibase/liquibase:4.29
+    container_name: liquibase_credit
+    depends_on:
+      - postgresql-credit
+    command:
+      - --searchPath=/changesets
+      - --changelog-file=master.xml
+      - --url=jdbc:postgresql://postgresql-credit:5432/creditdb
+      - --username=postgres
+      - --password=postgres
+      - update
+    volumes:
+      - ./credit-processing/src/main/resources/db/changelog:/changesets
+
+volumes:
+  client_data: {}
+  account_data: {}
+  credit_data: {}
+
