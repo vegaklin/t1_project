@@ -1,5 +1,5 @@
 CREATE TABLE account (
-    id BIGINT PRIMARY KEY,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     client_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
     balance DECIMAL(20,2) NOT NULL DEFAULT 0,
@@ -10,7 +10,7 @@ CREATE TABLE account (
 );
 
 CREATE TABLE card (
-    id BIGINT PRIMARY KEY,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     account_id BIGINT NOT NULL,
     card_id VARCHAR(100) NOT NULL UNIQUE,
     payment_system VARCHAR(100) NOT NULL,
@@ -20,9 +20,9 @@ CREATE TABLE card (
 );
 
 CREATE TABLE payment (
-    id BIGINT PRIMARY KEY,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     account_id BIGINT NOT NULL,
-    payment_date DATE NOT NULL,
+    payment_date TIMESTAMP WITH TIME ZONE NOT NULL,
     amount DECIMAL(20,2) NOT NULL,
     is_credit BOOLEAN NOT NULL,
     payed_at TIMESTAMP,
@@ -32,7 +32,7 @@ CREATE TABLE payment (
 );
 
 CREATE TABLE transaction (
-    id BIGINT PRIMARY KEY,
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     account_id BIGINT NOT NULL,
     card_id BIGINT,
     type VARCHAR(100) NOT NULL,
