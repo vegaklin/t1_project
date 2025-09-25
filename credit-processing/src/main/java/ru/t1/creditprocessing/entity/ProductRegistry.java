@@ -32,6 +32,6 @@ public class ProductRegistry {
     @Column(name = "open_date", nullable = false)
     private OffsetDateTime openDate;
 
-    @OneToMany(mappedBy = "product_registry", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productRegistry", cascade = CascadeType.ALL)
     private List<PaymentRegistry> payments;
 }
