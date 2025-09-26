@@ -3,6 +3,7 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.TransactionStatus;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -37,8 +38,4 @@ public class Transaction {
 
     @Column(nullable = false)
     private OffsetDateTime timestamp;
-
-    public enum TransactionStatus {
-        ALLOWED, PROCESSING, COMPLETE, BLOCKED, CANCELLED
-    }
 }

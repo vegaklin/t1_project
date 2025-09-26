@@ -3,6 +3,7 @@ package ru.t1.clientprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.clientprocessing.model.Status;
 
 import java.time.OffsetDateTime;
 
@@ -24,6 +25,7 @@ public class ClientProduct {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
+
     @Column(name = "open_date", nullable = false)
     private OffsetDateTime openDate;
 
@@ -33,8 +35,4 @@ public class ClientProduct {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private Status status;
-
-    public enum Status {
-        ACTIVE, CLOSED, BLOCKED, ARRESTED
-    }
 }

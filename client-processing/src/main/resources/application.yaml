@@ -13,5 +13,14 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
+t1:
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    topic:
+      client_products: client_products
+      client_credit_products: client_credit_products
+      client_cards: client_cards
+
 server:
   port: 8081

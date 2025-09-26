@@ -9,7 +9,8 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Getter
-@Setter@Table(name = "payment_registry")
+@Setter
+@Table(name = "payment_registry")
 public class PaymentRegistry {
 
     @Id

@@ -3,6 +3,7 @@ package ru.t1.clientprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.clientprocessing.model.DocumentType;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -51,8 +52,4 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<ClientProduct> clientProducts;
-
-    public enum DocumentType {
-        PASSPORT, INT_PASSPORT, BIRTH_CERT
-    }
 }

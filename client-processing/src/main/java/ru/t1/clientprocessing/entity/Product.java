@@ -3,6 +3,7 @@ package ru.t1.clientprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.clientprocessing.model.ProductKey;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -32,8 +33,4 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ClientProduct> clientProducts;
-
-    public enum ProductKey {
-        DC, CC, AC, IPO, PC, PENS, NS, INS, BS
-    }
 }
