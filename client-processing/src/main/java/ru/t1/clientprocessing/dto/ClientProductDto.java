@@ -1,4 +1,10 @@
 package ru.t1.clientprocessing.dto;
 
-public record ClientProductDto() {
+import ru.t1.clientprocessing.model.Status;
+
+public record ClientProductDto(
+        Long clientId,
+        Long productId,
+        Status status
+) {
 }

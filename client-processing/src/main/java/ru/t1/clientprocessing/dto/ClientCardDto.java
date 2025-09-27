@@ -1,4 +1,10 @@
 package ru.t1.clientprocessing.dto;
 
-public class ClientCardDto {
+import jakarta.validation.constraints.NotNull;
+import ru.t1.clientprocessing.model.PaymentSystem;
+
+public record ClientCardDto(
+        @NotNull Long clientId,
+        @NotNull PaymentSystem paymentSystem
+) {
 }

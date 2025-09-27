@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -22,7 +22,7 @@ public class PaymentRegistry {
     private ProductRegistry productRegistry;
 
     @Column(name = "payment_date", nullable = false)
-    private OffsetDateTime paymentDate;
+    private LocalDate paymentDate;
 
     @Column(nullable = false)
     private BigDecimal amount;
@@ -37,5 +37,5 @@ public class PaymentRegistry {
     private Boolean expired = false;
 
     @Column(name = "payment_expiration_date")
-    private OffsetDateTime paymentExpirationDate;
+    private LocalDate paymentExpirationDate;
 }

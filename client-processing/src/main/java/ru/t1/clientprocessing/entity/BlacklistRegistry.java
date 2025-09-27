@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.t1.clientprocessing.model.DocumentType;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,11 +25,11 @@ public class BlacklistRegistry {
     private String documentId;
 
     @Column(name = "blacklisted_at", nullable = false)
-    private OffsetDateTime blacklistedAt;
+    private LocalDate blacklistedAt;
 
     @Column(name = "reason", nullable = false)
     private String reason;
 
     @Column(name = "blacklist_expiration_date")
-    private OffsetDateTime blacklistExpirationDate;
+    private LocalDate blacklistExpirationDate;
 }

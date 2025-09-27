@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.t1.clientprocessing.model.ProductKey;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -26,9 +26,9 @@ public class Product {
     private ProductKey key;
 
     @Column(name = "create_date", nullable = false)
-    private OffsetDateTime createDate;
+    private LocalDate createDate;
 
-    @Column(name = "product_id", nullable = false, unique = true, length = 100)
+    @Column(name = "product_id", unique = true, length = 100)
     private String productId;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

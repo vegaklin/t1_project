@@ -1,6 +1,6 @@
 package ru.t1.accountprocessing.model;
 
-public enum TransactionStatus {
+public enum Status {
     ALLOWED,
     PROCESSING,
     COMPLETE,

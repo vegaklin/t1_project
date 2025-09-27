@@ -3,10 +3,11 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import ru.t1.accountprocessing.model.TransactionStatus;
+import ru.t1.accountprocessing.model.Status;
+import ru.t1.accountprocessing.model.TransactionPaymentType;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -26,16 +27,17 @@ public class Transaction {
     @JoinColumn(name = "card_id")
     private Card card;
 
-    @Column(nullable = false, length = 100)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TransactionPaymentType type;
 
     @Column(nullable = false)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private TransactionStatus status;
+    private Status status;
 
     @Column(nullable = false)
-    private OffsetDateTime timestamp;
+    private LocalDateTime timestamp;
 }

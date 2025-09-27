@@ -3,9 +3,11 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.TransactionPaymentType;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -22,7 +24,7 @@ public class Payment {
     private Account account;
 
     @Column(name = "payment_date", nullable = false)
-    private OffsetDateTime paymentDate;
+    private LocalDate paymentDate;
 
     @Column(nullable = false)
     private BigDecimal amount;
@@ -31,8 +33,9 @@ public class Payment {
     private Boolean isCredit;
 
     @Column(name = "payed_at")
-    private OffsetDateTime payedAt;
+    private LocalDateTime payedAt;
 
-    @Column(nullable = false, length = 100)
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private TransactionPaymentType type;
 }

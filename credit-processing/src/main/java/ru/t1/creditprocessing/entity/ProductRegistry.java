@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -31,7 +31,7 @@ public class ProductRegistry {
     private BigDecimal interestRate = BigDecimal.ZERO;
 
     @Column(name = "open_date", nullable = false)
-    private OffsetDateTime openDate;
+    private LocalDate openDate;
 
     @OneToMany(mappedBy = "productRegistry", cascade = CascadeType.ALL)
     private List<PaymentRegistry> payments;

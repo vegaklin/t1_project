@@ -3,6 +3,7 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.Status;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -35,8 +36,9 @@ public class Account {
     @Column(name = "card_exist", nullable = false)
     private Boolean cardExist = false;
 
-    @Column(nullable = false, length = 20)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Card> cards;

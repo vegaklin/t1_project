@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.t1.clientprocessing.model.Status;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,12 +25,11 @@ public class ClientProduct {
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-
     @Column(name = "open_date", nullable = false)
-    private OffsetDateTime openDate;
+    private LocalDate openDate;
 
     @Column(name = "close_date")
-    private OffsetDateTime closeDate;
+    private LocalDate closeDate;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)

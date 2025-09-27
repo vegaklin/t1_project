@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.t1.clientprocessing.model.DocumentType;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -35,7 +35,7 @@ public class Client {
     private String lastName;
 
     @Column(name = "date_of_birth", nullable = false)
-    private OffsetDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "document_type", nullable = false, length = 20)

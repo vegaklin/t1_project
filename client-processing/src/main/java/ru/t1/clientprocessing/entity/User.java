@@ -1,6 +1,7 @@
 package ru.t1.clientprocessing.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +24,7 @@ public class User {
     private String password;
 
     @Column(nullable = false, unique = true, length = 100)
+    @Email
     private String email;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
