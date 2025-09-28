@@ -13,7 +13,7 @@ public class ClientProductsKafkaProducer {
     @Value("${t1.kafka.topic.client_products}")
     private String topic;
 
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private final KafkaTemplate<String, Object> kafkaTemplate;
 
     public void sendClientProductDtoToKafka(ClientProductDto clientProductDto) {
         kafkaTemplate.send(topic, clientProductDto);
