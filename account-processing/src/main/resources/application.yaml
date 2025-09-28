@@ -13,5 +13,21 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
+t1:
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: t1-project
+      max.poll.records: 10
+      max.partition.fetch.bytes: 300000
+      max.poll.interval.ms: 300000
+      session.timeout.ms: 10000
+      heartbeat.interval: 3000
+    topic:
+      client-products: client_products
+      client-transactions: client_transactions
+      client-cards: client_cards
+
 server:
   port: 8080
