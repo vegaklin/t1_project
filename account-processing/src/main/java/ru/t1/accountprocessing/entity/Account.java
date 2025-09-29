@@ -11,18 +11,23 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "account")
+@Table(
+        name = "account",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"client_id", "product_id"})
+        }
+)
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    @Column(name = "client_id", nullable = false, length = 12)
+    private String clientId;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @Column(name = "product_id", nullable = false, length = 100)
+    private String productId;
 
     @Column(nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;

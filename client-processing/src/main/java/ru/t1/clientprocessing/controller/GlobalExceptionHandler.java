@@ -11,7 +11,7 @@ import ru.t1.clientprocessing.exception.*;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, NoCreditAmountException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class, NoCreditDataException.class})
     public ResponseEntity<ClientErrorResponse> handleBadRequestExceptions(RuntimeException ex) {
         return ResponseEntity.badRequest().body(new ClientErrorResponse(ex.getMessage()));
     }

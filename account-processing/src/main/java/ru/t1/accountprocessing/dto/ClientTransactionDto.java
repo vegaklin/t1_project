@@ -6,6 +6,8 @@ import ru.t1.accountprocessing.model.TransactionPaymentType;
 import java.math.BigDecimal;
 
 public record ClientTransactionDto(
+        @NotNull String clientId,
+        @NotNull String productId,
         @NotNull BigDecimal amount,
         @NotNull TransactionPaymentType type
 ) {

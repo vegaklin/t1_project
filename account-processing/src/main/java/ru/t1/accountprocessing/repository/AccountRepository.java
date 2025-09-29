@@ -6,5 +6,5 @@ import ru.t1.accountprocessing.entity.Account;
 import java.util.Optional;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
-    Optional<Account> findByClientId(Long clientId);
+    Optional<Account> findByClientIdAndProductId(String clientId, String productId);
 }

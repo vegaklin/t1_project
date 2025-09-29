@@ -29,9 +29,8 @@ public class ClientCardKafkaConsumer {
                 log.info("Processing ClientCardDto: {}", dto);
                 cardService.createCard(dto);
             });
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             log.error("Error processing ClientCardDto: {}", e.getMessage(), e);
-            throw e;
         } finally {
             ack.acknowledge();
         }

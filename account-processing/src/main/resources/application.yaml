@@ -30,4 +30,4 @@ t1:
       client-cards: client_cards
 
 server:
-  port: 8080
+  port: 8081

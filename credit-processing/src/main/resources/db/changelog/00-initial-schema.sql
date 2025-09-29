@@ -1,7 +1,7 @@
 CREATE TABLE product_registry (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    client_id BIGINT NOT NULL,
-    account_id BIGINT NOT NULL,
+    client_id VARCHAR(12) NOT NULL,
+    account_id VARCHAR(100) NOT NULL,
     product_id BIGINT NOT NULL,
     interest_rate DECIMAL(20,2) NOT NULL DEFAULT 0,
     open_date DATE NOT NULL

@@ -10,7 +10,7 @@ import ru.t1.clientprocessing.dto.ClientCardDto;
 @RequiredArgsConstructor
 public class ClientCardsKafkaProducer {
 
-    @Value("${t1.kafka.topic.client_cards}")
+    @Value("${t1.kafka.topic.client-cards}")
     private String topic;
 
     private final KafkaTemplate<String, Object> kafkaTemplate;

@@ -31,9 +31,8 @@ public class ClientProductKafkaConsumer {
                 log.info("Processing ClientProductDto: {}", dto);
                 accountService.createAccount(dto);
             });
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             log.error("Error processing ClientProductDto: {}", e.getMessage(), e);
-            throw e;
         } finally {
             ack.acknowledge();
         }

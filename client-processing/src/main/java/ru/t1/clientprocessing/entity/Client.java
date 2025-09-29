@@ -21,8 +21,8 @@ public class Client {
     @Column(name = "client_id", nullable = false, unique = true, length = 12)
     private String clientId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @Column(name = "first_name", nullable = false, length = 100)

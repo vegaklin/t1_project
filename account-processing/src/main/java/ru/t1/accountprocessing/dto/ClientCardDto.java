@@ -4,7 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import ru.t1.accountprocessing.model.PaymentSystem;
 
 public record ClientCardDto(
-        @NotNull Long clientId,
+        @NotNull String clientId,
+        @NotNull String productId,
         @NotNull PaymentSystem paymentSystem
 ) {
 }

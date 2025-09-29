@@ -18,14 +18,14 @@ public class ProductRegistry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    @Column(name = "client_id", nullable = false, length = 12)
+    private String clientId;
 
     @Column(name = "account_id", nullable = false)
     private Long accountId;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @Column(name = "product_id", nullable = false, length = 100)
+    private String productId;
 
     @Column(name = "interest_rate", nullable = false)
     private BigDecimal interestRate = BigDecimal.ZERO;
@@ -35,4 +35,7 @@ public class ProductRegistry {
 
     @OneToMany(mappedBy = "productRegistry", cascade = CascadeType.ALL)
     private List<PaymentRegistry> payments;
+
+    @Column(name = "month_count", nullable = false)
+    private Integer monthCount;
 }

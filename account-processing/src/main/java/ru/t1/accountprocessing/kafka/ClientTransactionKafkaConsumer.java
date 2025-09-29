@@ -29,9 +29,8 @@ public class ClientTransactionKafkaConsumer {
                 log.info("Processing ClientTransactionDto: {}", dto);
                 transactionService.createTransaction(dto);
             });
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             log.error("Error processing ClientTransactionDto: {}", e.getMessage(), e);
-            throw e;
         } finally {
             ack.acknowledge();
         }
