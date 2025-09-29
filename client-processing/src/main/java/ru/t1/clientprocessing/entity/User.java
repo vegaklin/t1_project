@@ -28,5 +28,5 @@ public class User {
     private String email;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Client> clients;
+    private Client clients;
 }

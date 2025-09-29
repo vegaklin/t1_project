@@ -29,10 +29,10 @@ public class ClientCreditServiceImpl implements ClientCreditService {
 
     private final ClientInfoService clientInfoService;
 
-    @Value("${credit.limit}")
+    @Value("${t1.credit.limit}")
     private BigDecimal creditLimit;
 
-    @Value("${credit.interest-rate-percent}")
+    @Value("${t1.credit.interest-rate-percent}")
     private BigDecimal interestRatePercent;
 
     @Override

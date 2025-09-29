@@ -6,7 +6,7 @@ CREATE TABLE account (
     interest_rate DECIMAL(20,2) NOT NULL DEFAULT 0,
     is_recalc BOOLEAN NOT NULL DEFAULT FALSE,
     card_exist BOOLEAN NOT NULL DEFAULT FALSE,
-    status VARCHAR(20) NOT NULL CHECK (status IN ('ALLOWED', 'PROCESSING', 'COMPLETE', 'BLOCKED', 'CANCELLED'))
+    status VARCHAR(20) NOT NULL CHECK (status IN ('ALLOWED', 'PROCESSING', 'COMPLETE', 'BLOCKED', 'CANCELLED')),
 
     CONSTRAINT unique_client_product UNIQUE (client_id, product_id)
 );
