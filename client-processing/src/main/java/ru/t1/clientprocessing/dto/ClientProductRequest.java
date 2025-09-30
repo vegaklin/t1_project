@@ -11,7 +11,7 @@ public record ClientProductRequest(
         @NotNull Long productId,
         @NotNull LocalDate openDate,
         LocalDate closeDate,
-        Status status,
+        @NotNull Status status,
         BigDecimal amount,
         Integer monthCount
 ) {

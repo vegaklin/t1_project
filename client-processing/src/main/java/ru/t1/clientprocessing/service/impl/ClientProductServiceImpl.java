@@ -92,10 +92,6 @@ public class ClientProductServiceImpl implements ClientProductService {
         ProductKey key = clientProduct.getProduct().getKey();
 
         if (key == ProductKey.DC || key == ProductKey.CC || key == ProductKey.NS || key == ProductKey.PENS) {
-            if (clientProductRequest.status() == null) {
-                throw new NoProductDataException("Requested status is not specified");
-            }
-
             ClientProductDto clientProductDto = new ClientProductDto(
                     clientProduct.getClient().getClientId(),
                     clientProduct.getProduct().getProductId(),
