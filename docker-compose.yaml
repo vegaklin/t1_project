@@ -92,8 +92,8 @@ services:
 
   broker_t1:
     image: confluentinc/cp-kafka:5.5.0
-    hostname: kafka_t1
-    container_name: kafka_t1
+    hostname: broker_t1
+    container_name: broker_t1
     depends_on:
       - zookeeper_t1
     ports:

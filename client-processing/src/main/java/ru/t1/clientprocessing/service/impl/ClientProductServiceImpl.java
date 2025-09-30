@@ -7,10 +7,7 @@ import ru.t1.clientprocessing.dto.*;
 import ru.t1.clientprocessing.entity.Client;
 import ru.t1.clientprocessing.entity.ClientProduct;
 import ru.t1.clientprocessing.entity.Product;
-import ru.t1.clientprocessing.exception.NoClientException;
-import ru.t1.clientprocessing.exception.NoClientProductException;
-import ru.t1.clientprocessing.exception.NoCreditDataException;
-import ru.t1.clientprocessing.exception.NoProductException;
+import ru.t1.clientprocessing.exception.*;
 import ru.t1.clientprocessing.kafka.ClientCreditProductsKafkaProducer;
 import ru.t1.clientprocessing.kafka.ClientProductsKafkaProducer;
 import ru.t1.clientprocessing.model.ProductKey;
@@ -95,6 +92,10 @@ public class ClientProductServiceImpl implements ClientProductService {
         ProductKey key = clientProduct.getProduct().getKey();
 
         if (key == ProductKey.DC || key == ProductKey.CC || key == ProductKey.NS || key == ProductKey.PENS) {
+            if (clientProductRequest.status() == null) {
+                throw new NoProductDataException("Requested status is not specified");
+            }
+
             ClientProductDto clientProductDto = new ClientProductDto(
                     clientProduct.getClient().getClientId(),
                     clientProduct.getProduct().getProductId(),
