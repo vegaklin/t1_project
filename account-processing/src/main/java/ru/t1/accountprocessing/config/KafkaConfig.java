@@ -56,7 +56,7 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConsumerFactory<String, ClientTransactionDto> stringConsumerFactory() {
+    public ConsumerFactory<String, ClientTransactionDto> clientTransactionFactory() {
         Map<String, Object> props = consumerConfigs();
         props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, ClientTransactionDto.class.getName());
         return new DefaultKafkaConsumerFactory<>(props);
@@ -97,7 +97,7 @@ public class KafkaConfig {
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, ClientTransactionDto> clientTransactionKafkaListenerContainerFactory() {
-        return createListenerFactory(stringConsumerFactory());
+        return createListenerFactory(clientTransactionFactory());
     }
 
     private <T> ConcurrentKafkaListenerContainerFactory<String, T> createListenerFactory(ConsumerFactory<String, T> consumerFactory) {
