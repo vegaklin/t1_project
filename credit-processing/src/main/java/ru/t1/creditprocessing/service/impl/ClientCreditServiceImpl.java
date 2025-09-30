@@ -110,7 +110,7 @@ public class ClientCreditServiceImpl implements ClientCreditService {
 
             PaymentRegistry payment = new PaymentRegistry();
             payment.setProductRegistry(product);
-            payment.setPaymentDate(product.getOpenDate().plusMonths(month));
+            payment.setPaymentDate(product.getOpenDate().plusMonths(month - 1));
             payment.setAmount(annuityPayment);
             payment.setInterestRateAmount(interestRateAmount);
             payment.setDebtAmount(debtAmount);
