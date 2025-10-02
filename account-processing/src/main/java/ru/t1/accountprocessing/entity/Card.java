@@ -3,8 +3,8 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.ClientStatus;
 import ru.t1.accountprocessing.model.PaymentSystem;
-import ru.t1.accountprocessing.model.Status;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class Card {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status;
+    private ClientStatus status;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Transaction> transactions;

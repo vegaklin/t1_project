@@ -3,7 +3,7 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import ru.t1.accountprocessing.model.Status;
+import ru.t1.accountprocessing.model.TransactionStatus;
 import ru.t1.accountprocessing.model.TransactionPaymentType;
 
 import java.math.BigDecimal;
@@ -36,7 +36,7 @@ public class Transaction {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    private Status status;
+    private TransactionStatus status;
 
     @Column(nullable = false)
     private LocalDateTime timestamp;

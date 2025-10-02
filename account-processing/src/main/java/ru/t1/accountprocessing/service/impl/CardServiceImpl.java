@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.t1.accountprocessing.dto.ClientCardDto;
 import ru.t1.accountprocessing.entity.Account;
 import ru.t1.accountprocessing.entity.Card;
-import ru.t1.accountprocessing.model.Status;
+import ru.t1.accountprocessing.model.ClientStatus;
 import ru.t1.accountprocessing.repository.AccountRepository;
 import ru.t1.accountprocessing.repository.CardRepository;
 import ru.t1.accountprocessing.service.CardService;
@@ -31,12 +31,12 @@ public class CardServiceImpl implements CardService {
                         + " and productId: " + clientCardDto.productId()
                 ));
 
-        if (account.getStatus() != Status.BLOCKED) {
+        if (account.getStatus() == ClientStatus.ACTIVE) {
             Card card = new Card();
             card.setAccount(account);
             card.setCardId(UUID.randomUUID().toString());
             card.setPaymentSystem(clientCardDto.paymentSystem());
-            card.setStatus(Status.ALLOWED);
+            card.setStatus(ClientStatus.ACTIVE);
 
             cardRepository.save(card);
 

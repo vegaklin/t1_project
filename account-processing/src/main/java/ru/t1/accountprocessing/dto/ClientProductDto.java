@@ -6,6 +6,7 @@ import ru.t1.accountprocessing.model.ClientStatus;
 public record ClientProductDto(
         @NotNull String clientId,
         @NotNull String productId,
-        @NotNull ClientStatus status
+        @NotNull ClientStatus status,
+        @NotNull Boolean isRecalc
 ) {
 }

@@ -2,7 +2,7 @@ package ru.t1.accountprocessing.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.UUIDDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +18,7 @@ import org.springframework.util.backoff.FixedBackOff;
 import ru.t1.accountprocessing.dto.ClientCardDto;
 import ru.t1.accountprocessing.dto.ClientProductDto;
 import ru.t1.accountprocessing.dto.ClientTransactionDto;
+import ru.t1.accountprocessing.dto.ClientPaymentDto;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,6 +63,13 @@ public class KafkaConfig {
         return new DefaultKafkaConsumerFactory<>(props);
     }
 
+    @Bean
+    public ConsumerFactory<String, ClientPaymentDto> clientPaymentFactory() {
+        Map<String, Object> props = consumerConfigs();
+        props.put(JsonDeserializer.VALUE_DEFAULT_TYPE, ClientPaymentDto.class.getName());
+        return new DefaultKafkaConsumerFactory<>(props);
+    }
+
     private Map<String, Object> consumerConfigs() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
@@ -79,7 +87,7 @@ public class KafkaConfig {
         props.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
         props.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
 
-        props.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+        props.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, UUIDDeserializer.class);
         props.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
 
         return props;
@@ -98,6 +106,11 @@ public class KafkaConfig {
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, ClientTransactionDto> clientTransactionKafkaListenerContainerFactory() {
         return createListenerFactory(clientTransactionFactory());
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, ClientPaymentDto> clientPaymentKafkaListenerContainerFactory() {
+        return createListenerFactory(clientPaymentFactory());
     }
 
     private <T> ConcurrentKafkaListenerContainerFactory<String, T> createListenerFactory(ConsumerFactory<String, T> consumerFactory) {

@@ -12,6 +12,7 @@ public record ClientProductRequest(
         @NotNull LocalDate openDate,
         LocalDate closeDate,
         @NotNull Status status,
+        Boolean isRecalc,
         BigDecimal amount,
         Integer monthCount
 ) {

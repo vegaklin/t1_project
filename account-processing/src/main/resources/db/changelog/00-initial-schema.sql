@@ -6,7 +6,7 @@ CREATE TABLE account (
     interest_rate DECIMAL(20,2) NOT NULL DEFAULT 0,
     is_recalc BOOLEAN NOT NULL DEFAULT FALSE,
     card_exist BOOLEAN NOT NULL DEFAULT FALSE,
-    status VARCHAR(20) NOT NULL CHECK (status IN ('ALLOWED', 'PROCESSING', 'COMPLETE', 'BLOCKED', 'CANCELLED')),
+    status VARCHAR(20) NOT NULL CHECK (status IN ('ACTIVE', 'CLOSED', 'BLOCKED', 'ARRESTED')),
 
     CONSTRAINT unique_client_product UNIQUE (client_id, product_id)
 );
@@ -16,7 +16,7 @@ CREATE TABLE card (
     account_id BIGINT NOT NULL,
     card_id VARCHAR(100) NOT NULL UNIQUE,
     payment_system VARCHAR(100) NOT NULL CHECK (payment_system IN ('MIR', 'MASTERCARD', 'VISA', 'UNION_PAY')),
-    status VARCHAR(100) NOT NULL CHECK (status IN ('ALLOWED', 'PROCESSING', 'COMPLETE', 'BLOCKED', 'CANCELLED')),
+    status VARCHAR(100) NOT NULL CHECK (status IN ('ACTIVE', 'CLOSED', 'BLOCKED', 'ARRESTED')),
 
     CONSTRAINT fk_card_account FOREIGN KEY (account_id) REFERENCES account(id)
 );

@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(new ClientErrorResponse(ex.getMessage()));
     }
 
-    @ExceptionHandler({NoClientException.class, NoClientProductException.class, NoProductException.class})
+    @ExceptionHandler({NoProductDataException.class, NoClientException.class, NoClientProductException.class, NoProductException.class})
     public ResponseEntity<ClientErrorResponse> handleNotFoundExceptions(RuntimeException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ClientErrorResponse(ex.getMessage()));
     }

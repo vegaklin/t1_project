@@ -92,10 +92,14 @@ public class ClientProductServiceImpl implements ClientProductService {
         ProductKey key = clientProduct.getProduct().getKey();
 
         if (key == ProductKey.DC || key == ProductKey.CC || key == ProductKey.NS || key == ProductKey.PENS) {
+            if (clientProductRequest.isRecalc() == null) {
+                throw new NoProductDataException("Requested isRecalc is not specified");
+            }
             ClientProductDto clientProductDto = new ClientProductDto(
                     clientProduct.getClient().getClientId(),
                     clientProduct.getProduct().getProductId(),
-                    clientProduct.getStatus()
+                    clientProduct.getStatus(),
+                    clientProductRequest.isRecalc()
             );
             clientProductsKafkaProducer.sendClientProductDtoToKafka(clientProductDto);
         } else if (key == ProductKey.IPO || key == ProductKey.PC || key == ProductKey.AC) {
