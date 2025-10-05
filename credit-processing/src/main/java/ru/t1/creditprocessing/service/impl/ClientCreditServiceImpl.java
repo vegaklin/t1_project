@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.t1.creditprocessing.aop.annotation.LogDatasourceError;
 import ru.t1.creditprocessing.dto.ClientCreditProductDto;
 import ru.t1.creditprocessing.dto.ClientInfoResponse;
 import ru.t1.creditprocessing.entity.PaymentRegistry;
@@ -37,6 +38,7 @@ public class ClientCreditServiceImpl implements ClientCreditService {
 
     @Override
     @Transactional
+    @LogDatasourceError
     public void createCredit(ClientCreditProductDto clientCreditProductDto) {
         ClientInfoResponse clientInfo = clientInfoService.getClientInfo(clientCreditProductDto.clientId());
 

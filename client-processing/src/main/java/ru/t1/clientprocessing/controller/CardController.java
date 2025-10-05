@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.t1.clientprocessing.aop.annotation.HttpIncomeRequestLog;
 import ru.t1.clientprocessing.dto.CardRequest;
 import ru.t1.clientprocessing.service.CardService;
 
@@ -17,6 +18,7 @@ public class CardController {
     private final CardService clientProductService;
 
     @PostMapping("/create")
+    @HttpIncomeRequestLog
     public void createCard(
             @Valid @RequestBody CardRequest cardRequest
     ) {

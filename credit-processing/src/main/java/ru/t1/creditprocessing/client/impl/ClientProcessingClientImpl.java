@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import ru.t1.creditprocessing.aop.annotation.HttpOutcomeRequestLog;
 import ru.t1.creditprocessing.client.ClientProcessingClient;
 import ru.t1.creditprocessing.dto.ClientErrorResponse;
 import ru.t1.creditprocessing.dto.ClientInfoResponse;
@@ -19,6 +20,7 @@ public class ClientProcessingClientImpl implements ClientProcessingClient {
     private final WebClient clientProcessingWebClient;
 
     @Override
+    @HttpOutcomeRequestLog
     public Mono<ClientInfoResponse> gitClientInfo(String clientId) {
         return clientProcessingWebClient
                 .get()

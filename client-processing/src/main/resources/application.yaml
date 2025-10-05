@@ -21,6 +21,7 @@ t1:
       client-products: client_products
       client-credit_-products: client_credit_products
       client-cards: client_cards
+      service-logs: service_logs
 
 server:
   port: 8080
