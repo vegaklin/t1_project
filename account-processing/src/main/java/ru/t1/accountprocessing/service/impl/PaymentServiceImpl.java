@@ -3,6 +3,7 @@ package ru.t1.accountprocessing.service.impl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.t1.accountprocessing.dto.ClientPaymentDto;
 import ru.t1.accountprocessing.entity.Account;
 import ru.t1.accountprocessing.entity.Payment;
@@ -25,6 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
 
     @Override
+    @Transactional
     public void createPayment(ClientPaymentDto clientPaymentDto) {
         Account account = getCreditAccount(clientPaymentDto);
         if (!account.getIsRecalc()) {

@@ -3,6 +3,8 @@ package ru.t1.clientprocessing.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.t1.clientprocessing.aop.annotation.Cached;
+import ru.t1.clientprocessing.aop.annotation.Metric;
 import ru.t1.clientprocessing.dto.ClientInfoResponse;
 import ru.t1.clientprocessing.dto.RegisterClientRequest;
 import ru.t1.clientprocessing.dto.RegisterClientResponse;
@@ -27,6 +29,7 @@ public class ClientServiceImpl implements ClientService {
     private final BlacklistRegistryRepository blacklistRegistryRepository;
 
     @Override
+    @Metric
     @Transactional
     public RegisterClientResponse registerClient(RegisterClientRequest registerClientRequest) {
         Optional<BlacklistRegistry> blacklistRegistryOptional = blacklistRegistryRepository.findByDocumentTypeAndDocumentId(
@@ -49,6 +52,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    @Metric
+    @Cached
     @Transactional(readOnly = true)
     public ClientInfoResponse getClientInfo(String clientId) {
         Client client = clientRepository.findByClientId(clientId)

@@ -109,7 +109,18 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
+  redis_t1:
+    image: redis:7.2
+    container_name: redis_t1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: [ "redis-server", "--appendonly", "yes" ]
+    restart: always
+
 volumes:
+  redis_data: {}
   client_data: {}
   account_data: {}
   credit_data: {}

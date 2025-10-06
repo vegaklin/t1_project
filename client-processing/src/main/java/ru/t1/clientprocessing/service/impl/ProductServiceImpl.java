@@ -3,6 +3,8 @@ package ru.t1.clientprocessing.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.t1.clientprocessing.aop.annotation.Cached;
+import ru.t1.clientprocessing.aop.annotation.Metric;
 import ru.t1.clientprocessing.dto.ProductRequest;
 import ru.t1.clientprocessing.dto.ProductResponse;
 import ru.t1.clientprocessing.entity.Product;
@@ -17,6 +19,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     @Override
+    @Metric
     @Transactional
     public ProductResponse createProduct(ProductRequest productRequest) {
         Product product = new Product();
@@ -32,6 +35,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Metric
+    @Cached
     @Transactional(readOnly = true)
     public ProductResponse getProduct(Long id) {
         Product product = productRepository.findById(id)
@@ -40,6 +45,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Metric
     @Transactional
     public ProductResponse updateProduct(Long id, ProductRequest productRequest) {
         Product product = productRepository.findById(id)
@@ -55,6 +61,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Metric
     @Transactional
     public void deleteProduct(Long id) {
         if (!productRepository.existsById(id)) {
