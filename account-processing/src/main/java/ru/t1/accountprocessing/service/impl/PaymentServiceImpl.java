@@ -11,6 +11,8 @@ import ru.t1.accountprocessing.exception.AccountNotFoundException;
 import ru.t1.accountprocessing.repository.AccountRepository;
 import ru.t1.accountprocessing.repository.PaymentRepository;
 import ru.t1.accountprocessing.service.PaymentService;
+import ru.t1.t1starter.annotation.LogDatasourceError;
+import ru.t1.t1starter.annotation.Metric;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -26,6 +28,8 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
 
     @Override
+    @Metric
+    @LogDatasourceError
     @Transactional
     public void createPayment(ClientPaymentDto clientPaymentDto) {
         Account account = getCreditAccount(clientPaymentDto);

@@ -3,8 +3,6 @@ package ru.t1.clientprocessing.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.t1.clientprocessing.aop.annotation.Cached;
-import ru.t1.clientprocessing.aop.annotation.Metric;
 import ru.t1.clientprocessing.dto.*;
 import ru.t1.clientprocessing.entity.Client;
 import ru.t1.clientprocessing.entity.ClientProduct;
@@ -17,6 +15,9 @@ import ru.t1.clientprocessing.repository.ClientProductRepository;
 import ru.t1.clientprocessing.repository.ClientRepository;
 import ru.t1.clientprocessing.repository.ProductRepository;
 import ru.t1.clientprocessing.service.ClientProductService;
+import ru.t1.t1starter.annotation.Cached;
+import ru.t1.t1starter.annotation.LogDatasourceError;
+import ru.t1.t1starter.annotation.Metric;
 
 @Service
 @RequiredArgsConstructor
@@ -31,6 +32,7 @@ public class ClientProductServiceImpl implements ClientProductService {
 
     @Override
     @Metric
+    @LogDatasourceError
     @Transactional
     public ClientProductResponse createClientProduct(ClientProductRequest clientProductRequest) {
         Client client = clientRepository.findById(clientProductRequest.clientId())
@@ -55,6 +57,7 @@ public class ClientProductServiceImpl implements ClientProductService {
     @Override
     @Metric
     @Cached
+    @LogDatasourceError
     @Transactional(readOnly = true)
     public ClientProductResponse getClientProduct(Long id) {
         ClientProduct clientProduct = clientProductRepository.findById(id)
@@ -64,6 +67,7 @@ public class ClientProductServiceImpl implements ClientProductService {
 
     @Override
     @Metric
+    @LogDatasourceError
     @Transactional
     public ClientProductResponse updateClientProduct(Long id, ClientProductRequest clientProductRequest) {
         ClientProduct clientProduct = clientProductRepository.findById(id)
@@ -87,6 +91,7 @@ public class ClientProductServiceImpl implements ClientProductService {
 
     @Override
     @Metric
+    @LogDatasourceError
     @Transactional
     public void deleteClientProduct(Long id) {
         if (!clientProductRepository.existsById(id)) {

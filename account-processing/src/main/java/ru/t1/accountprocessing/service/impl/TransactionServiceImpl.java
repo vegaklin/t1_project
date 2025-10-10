@@ -19,6 +19,8 @@ import ru.t1.accountprocessing.repository.CardRepository;
 import ru.t1.accountprocessing.repository.PaymentRepository;
 import ru.t1.accountprocessing.repository.TransactionRepository;
 import ru.t1.accountprocessing.service.TransactionService;
+import ru.t1.t1starter.annotation.LogDatasourceError;
+import ru.t1.t1starter.annotation.Metric;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -43,6 +45,8 @@ public class TransactionServiceImpl implements TransactionService {
     private long transactionPeriodMinutes;
 
     @Override
+    @Metric
+    @LogDatasourceError
     @Transactional
     public void createTransaction(ClientTransactionDto clientTransactionDto) {
         Card card = loadCard(clientTransactionDto.cardId());

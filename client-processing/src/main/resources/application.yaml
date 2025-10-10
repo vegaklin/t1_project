@@ -18,7 +18,7 @@ spring:
 
 t1:
   metric:
-    time-limit-ms: 100
+    time-limit-ms: 5
   cache:
     ttl-seconds: 60
   kafka:

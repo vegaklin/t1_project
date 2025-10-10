@@ -14,6 +14,10 @@ spring:
     open-in-view: false
 
 t1:
+  metric:
+    time-limit-ms: 5
+  cache:
+    ttl-seconds: 60
   account:
     interest-rate-percent: 22
   transaction:
@@ -34,6 +38,7 @@ t1:
       client-transactions: client_transactions
       client-payments: client_payments
       client-cards: client_cards
+      service-logs: service_logs
 
 server:
   port: 8081

@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-import ru.t1.creditprocessing.aop.annotation.HttpOutcomeRequestLog;
 import ru.t1.creditprocessing.client.ClientProcessingClient;
 import ru.t1.creditprocessing.dto.ClientErrorResponse;
 import ru.t1.creditprocessing.dto.ClientInfoResponse;
 import ru.t1.creditprocessing.exception.ClientProcessingClientException;
+import ru.t1.t1starter.annotation.HttpOutcomeRequestLog;
 
 @Slf4j
 @Component

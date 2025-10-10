@@ -4,11 +4,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.t1.clientprocessing.aop.annotation.HttpIncomeRequestLog;
 import ru.t1.clientprocessing.dto.ClientInfoResponse;
 import ru.t1.clientprocessing.dto.RegisterClientRequest;
 import ru.t1.clientprocessing.dto.RegisterClientResponse;
 import ru.t1.clientprocessing.service.ClientService;
+import ru.t1.t1starter.annotation.HttpIncomeRequestLog;
 
 @RestController
 @RequiredArgsConstructor

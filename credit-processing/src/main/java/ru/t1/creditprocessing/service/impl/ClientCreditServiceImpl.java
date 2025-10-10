@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.t1.creditprocessing.aop.annotation.LogDatasourceError;
 import ru.t1.creditprocessing.dto.ClientCreditProductDto;
 import ru.t1.creditprocessing.dto.ClientInfoResponse;
 import ru.t1.creditprocessing.entity.PaymentRegistry;
@@ -14,6 +13,8 @@ import ru.t1.creditprocessing.repository.PaymentRegistryRepository;
 import ru.t1.creditprocessing.repository.ProductRegistryRepository;
 import ru.t1.creditprocessing.service.ClientCreditService;
 import ru.t1.creditprocessing.service.ClientInfoService;
+import ru.t1.t1starter.annotation.LogDatasourceError;
+import ru.t1.t1starter.annotation.Metric;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -39,6 +40,7 @@ public class ClientCreditServiceImpl implements ClientCreditService {
     @Override
     @Transactional
     @LogDatasourceError
+    @Metric
     public void createCredit(ClientCreditProductDto clientCreditProductDto) {
         ClientInfoResponse clientInfo = clientInfoService.getClientInfo(clientCreditProductDto.clientId());
 
@@ -75,7 +77,7 @@ public class ClientCreditServiceImpl implements ClientCreditService {
     private ProductRegistry createProduct(ClientCreditProductDto clientCreditProductDto) {
         ProductRegistry product = new ProductRegistry();
         product.setClientId(clientCreditProductDto.clientId());
-        product.setAccountId(1L); // TODO:
+        product.setAccountId(1L);
         product.setProductId(clientCreditProductDto.productId());
         product.setInterestRate(interestRatePercent.divide(BigDecimal.valueOf(100),  10, RoundingMode.HALF_UP));
         product.setOpenDate(LocalDate.now());

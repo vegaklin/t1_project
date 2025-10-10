@@ -8,6 +8,7 @@ import ru.t1.accountprocessing.dto.ClientProductDto;
 import ru.t1.accountprocessing.entity.Account;
 import ru.t1.accountprocessing.repository.AccountRepository;
 import ru.t1.accountprocessing.service.AccountService;
+import ru.t1.t1starter.annotation.Metric;
 
 import java.math.BigDecimal;
 
@@ -21,6 +22,7 @@ public class AccountServiceImpl implements AccountService {
     private BigDecimal interestRate;
 
     @Override
+    @Metric
     @Transactional
     public void createAccount(ClientProductDto clientProductDto) {
         Account account = new Account();

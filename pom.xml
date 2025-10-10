@@ -21,16 +21,22 @@
         <module>account-processing</module>
         <module>credit-processing</module>
         <module>client-processing</module>
+        <module>t1-starter</module>
     </modules>
 
     <properties>
         <java.version>21</java.version>
         <lombok.version>1.18.30</lombok.version>
+        <t1-starter.version>0.0.23</t1-starter.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
+            <dependency>
+                <groupId>ru.t1</groupId>
+                <artifactId>t1-starter</artifactId>
+                <version>${t1-starter.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

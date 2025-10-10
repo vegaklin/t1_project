@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.t1.creditprocessing.client.ClientProcessingClient;
 import ru.t1.creditprocessing.dto.ClientInfoResponse;
 import ru.t1.creditprocessing.service.ClientInfoService;
+import ru.t1.t1starter.annotation.Metric;
 
 @Service
 @RequiredArgsConstructor
@@ -13,6 +14,7 @@ public class ClientInfoServiceImpl implements ClientInfoService {
     private final ClientProcessingClient clientProcessingClient;
 
     @Override
+    @Metric
     public ClientInfoResponse getClientInfo(String clientId) {
         return clientProcessingClient.gitClientInfo(clientId).block();
     }

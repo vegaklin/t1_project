@@ -11,6 +11,8 @@ import ru.t1.accountprocessing.model.ClientStatus;
 import ru.t1.accountprocessing.repository.AccountRepository;
 import ru.t1.accountprocessing.repository.CardRepository;
 import ru.t1.accountprocessing.service.CardService;
+import ru.t1.t1starter.annotation.LogDatasourceError;
+import ru.t1.t1starter.annotation.Metric;
 
 import java.util.UUID;
 
@@ -23,6 +25,8 @@ public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
 
     @Override
+    @Metric
+    @LogDatasourceError
     @Transactional
     public void createCard(ClientCardDto clientCardDto) {
         Account account = accountRepository
