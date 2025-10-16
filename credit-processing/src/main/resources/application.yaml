@@ -37,5 +37,9 @@ t1:
       client-credit-products: client_credit_products
       service-logs: service_logs
 
+security:
+  token: ${SECURITY_SECRET_TOKEN}
+  expiration-ms: 60000
+
 server:
   port: 8082

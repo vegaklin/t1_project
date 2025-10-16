@@ -1,6 +1,7 @@
 package ru.t1.creditprocessing.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ClientCreditServiceImpl implements ClientCreditService {
@@ -43,6 +45,7 @@ public class ClientCreditServiceImpl implements ClientCreditService {
     @Metric
     public void createCredit(ClientCreditProductDto clientCreditProductDto) {
         ClientInfoResponse clientInfo = clientInfoService.getClientInfo(clientCreditProductDto.clientId());
+        log.info("Get ClientInfoResponse: {}", clientInfo);
 
         validateCreditConditions(clientCreditProductDto);
 

@@ -3,6 +3,7 @@ package ru.t1.clientprocessing.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.t1.clientprocessing.dto.ProductRequest;
 import ru.t1.clientprocessing.dto.ProductResponse;
@@ -16,6 +17,7 @@ public class ProductController {
 
     private final ProductService productService;
 
+    @PreAuthorize("hasAuthority('MASTER')")
     @PostMapping
     @HttpIncomeRequestLog
     public ResponseEntity<ProductResponse> createProduct(
@@ -30,6 +32,7 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.getProduct(id));
     }
 
+    @PreAuthorize("hasAuthority('MASTER') or hasAuthority('GRAND_EMPLOYEE')")
     @PutMapping("/{id}")
     @HttpIncomeRequestLog
     public ResponseEntity<ProductResponse> updateProduct(
@@ -39,6 +42,7 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.updateProduct(id, productRequest));
     }
 
+    @PreAuthorize("hasAuthority('MASTER') or hasAuthority('GRAND_EMPLOYEE')")
     @DeleteMapping("/{id}")
     @HttpIncomeRequestLog
     public void deleteProduct(@PathVariable Long id) {

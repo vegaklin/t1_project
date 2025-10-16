@@ -3,6 +3,7 @@ package ru.t1.clientprocessing.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.t1.clientprocessing.dto.ClientInfoResponse;
 import ru.t1.clientprocessing.dto.RegisterClientRequest;
@@ -25,6 +26,7 @@ public class ClientController {
         return ResponseEntity.ok().body(clientService.registerClient(registerClientRequest));
     }
 
+    @PreAuthorize("hasAuthority('SERVICE')")
     @GetMapping("/{clientId}")
     @HttpIncomeRequestLog
     public ResponseEntity<ClientInfoResponse> getClientInfo(@PathVariable String clientId) {

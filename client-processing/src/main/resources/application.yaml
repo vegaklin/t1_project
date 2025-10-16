@@ -30,5 +30,9 @@ t1:
       client-cards: client_cards
       service-logs: service_logs
 
+security:
+  token: ${SECURITY_SECRET_TOKEN}
+  expiration-ms: 60000
+
 server:
   port: 8080

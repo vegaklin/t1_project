@@ -8,5 +8,6 @@
     <include file="00-initial-schema.sql"/>
     <include file="01-initial-schema.sql"/>
     <include file="02-initial-schema.sql"/>
+    <include file="03-initial-schema.sql"/>
 
 </databaseChangeLog>
