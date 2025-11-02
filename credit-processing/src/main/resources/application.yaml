@@ -13,5 +13,33 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
+t1:
+  metric:
+    time-limit-ms: 5
+  cache:
+    ttl-seconds: 60
+  client-processing:
+    url: ${CLIENT_PROCESSING_URL:http://localhost:8080}
+  credit:
+    limit: 10000000
+    interest-rate-percent: 22
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: t1-project
+      max.poll.records: 10
+      max.partition.fetch.bytes: 300000
+      max.poll.interval.ms: 300000
+      session.timeout.ms: 10000
+      heartbeat.interval: 3000
+    topic:
+      client-credit-products: client_credit_products
+      service-logs: service_logs
+
+security:
+  token: ${SECURITY_SECRET_TOKEN}
+  expiration-ms: 60000
+
 server:
   port: 8082

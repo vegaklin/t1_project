@@ -3,8 +3,9 @@ package ru.t1.clientprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.clientprocessing.model.DocumentType;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,8 @@ public class Client {
     @Column(name = "client_id", nullable = false, unique = true, length = 12)
     private String clientId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false, unique = true)
     private User user;
 
     @Column(name = "first_name", nullable = false, length = 100)
@@ -34,7 +35,7 @@ public class Client {
     private String lastName;
 
     @Column(name = "date_of_birth", nullable = false)
-    private OffsetDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "document_type", nullable = false, length = 20)
@@ -51,8 +52,4 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<ClientProduct> clientProducts;
-
-    public enum DocumentType {
-        PASSPORT, INT_PASSPORT, BIRTH_CERT
-    }
 }

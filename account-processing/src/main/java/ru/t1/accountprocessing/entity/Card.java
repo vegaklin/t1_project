@@ -3,6 +3,8 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.ClientStatus;
+import ru.t1.accountprocessing.model.PaymentSystem;
 
 import java.util.List;
 
@@ -23,11 +25,13 @@ public class Card {
     @Column(name = "card_id", nullable = false, unique = true, length = 100)
     private String cardId;
 
-    @Column(name = "payment_system", nullable = false, length = 100)
-    private String paymentSystem;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "payment_system", nullable = false)
+    private PaymentSystem paymentSystem;
 
-    @Column(nullable = false, length = 100)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ClientStatus status;
 
     @OneToMany(mappedBy = "card", cascade = CascadeType.ALL)
     private List<Transaction> transactions;

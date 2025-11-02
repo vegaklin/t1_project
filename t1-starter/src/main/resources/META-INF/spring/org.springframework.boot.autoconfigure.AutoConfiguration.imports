@@ -1,0 +1,15 @@
+# META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+
+ru.t1.t1starter.config.KafkaConfig
+ru.t1.t1starter.config.RedisConfig
+
+ru.t1.t1starter.config.property.ServiceNameProperties
+
+ru.t1.t1starter.config.ServiceLogsProducerConfig
+ru.t1.t1starter.config.CashedServiceConfig
+ru.t1.t1starter.config.ErrorLogServiceConfig
+
+ru.t1.t1starter.config.MetricAspectConfig
+ru.t1.t1starter.config.CachedAspectConfig
+ru.t1.t1starter.config.HttpRequestLogAspectConfig
+ru.t1.t1starter.config.LogDatasourceErrorAspectConfig

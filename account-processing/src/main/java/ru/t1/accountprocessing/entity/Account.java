@@ -3,6 +3,7 @@ package ru.t1.accountprocessing.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import ru.t1.accountprocessing.model.ClientStatus;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,18 +11,23 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "account")
+@Table(
+        name = "account",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"client_id", "product_id"})
+        }
+)
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    @Column(name = "client_id", nullable = false, length = 12)
+    private String clientId;
 
-    @Column(name = "product_id", nullable = false)
-    private Long productId;
+    @Column(name = "product_id", nullable = false, length = 100)
+    private String productId;
 
     @Column(nullable = false)
     private BigDecimal balance = BigDecimal.ZERO;
@@ -35,8 +41,9 @@ public class Account {
     @Column(name = "card_exist", nullable = false)
     private Boolean cardExist = false;
 
-    @Column(nullable = false, length = 20)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private ClientStatus status;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
     private List<Card> cards;

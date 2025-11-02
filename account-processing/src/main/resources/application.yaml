@@ -13,5 +13,32 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
+t1:
+  metric:
+    time-limit-ms: 5
+  cache:
+    ttl-seconds: 60
+  account:
+    interest-rate-percent: 22
+  transaction:
+    max-per-period: 5
+    period-duration-minutes: 1
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    consumer:
+      group-id: t1-project
+      max.poll.records: 10
+      max.partition.fetch.bytes: 300000
+      max.poll.interval.ms: 300000
+      session.timeout.ms: 10000
+      heartbeat.interval: 3000
+    topic:
+      client-products: client_products
+      client-transactions: client_transactions
+      client-payments: client_payments
+      client-cards: client_cards
+      service-logs: service_logs
+
 server:
-  port: 8080
+  port: 8081

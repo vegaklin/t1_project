@@ -12,6 +12,27 @@ spring:
     hibernate:
       ddl-auto: validate
     open-in-view: false
+  redis:
+    host: localhost
+    port: 6379
+
+t1:
+  metric:
+    time-limit-ms: 5
+  cache:
+    ttl-seconds: 60
+  kafka:
+    bootstrap:
+      server: ${KAFKA_SERVER:localhost:9092}
+    topic:
+      client-products: client_products
+      client-credit_-products: client_credit_products
+      client-cards: client_cards
+      service-logs: service_logs
+
+security:
+  token: ${SECURITY_SECRET_TOKEN}
+  expiration-ms: 60000
 
 server:
-  port: 8081
+  port: 8080
